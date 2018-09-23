@@ -52,23 +52,23 @@ console.log("------------------------");
 console.log("Exercice 4 : pyramide");
 console.log("------------------------");
 
-var pyramide = "";
+var pyramide = "*";
 
 for (var pyramide_i = 0; pyramide_i < 5; pyramide_i++){
-
-    if (pyramide_i == 0){
-        pyramide = "*";
-    } else if (pyramide_i == 1){
-        pyramide = "**";
-    } else if (pyramide_i == 2){
-        pyramide = "***";
-    } else if (pyramide_i == 3){
-        pyramide = "****";
-    } else if (pyramide_i == 4){
-        pyramide = "*****";
-    } else {
-    }
-    console.log(pyramide);
+    console.log(pyramide += "*")
+    
+    // if (pyramide_i == 0){
+    //     pyramide = "*";
+    // } else if (pyramide_i == 1){
+    //     pyramide = "**";
+    // } else if (pyramide_i == 2){
+    //     pyramide = "***";
+    // } else if (pyramide_i == 3){
+    //     pyramide = "****";
+    // } else if (pyramide_i == 4){
+    //     pyramide = "*****";
+    // } else {
+    // }
 
 }
 
