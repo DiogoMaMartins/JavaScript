@@ -29,7 +29,7 @@ console.log(multiplication);
 
 // Fonction de pourcentage
 function func_pourcentage(a, b) {
-    return a % b;
+    return a / 100 * b;
 }
 var pourcentage = func_pourcentage (5, 10);
 console.log(pourcentage);
