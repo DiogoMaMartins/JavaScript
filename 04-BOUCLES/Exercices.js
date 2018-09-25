@@ -54,6 +54,6 @@ console.log("------------------------");
 
 var pyramide = "";
 for (var pyramide_i = 0; pyramide_i < 5; pyramide_i++){
-    console.log(pyramide += "*")
+    console.log(pyramide += "*");
     
 }
