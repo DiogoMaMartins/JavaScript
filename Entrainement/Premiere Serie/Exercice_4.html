@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercice_4</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <form>
+            <label for="nom">Nom : </label><input type="text" name="nom" id="nom"/>
+            <label for="prenom">Prénom : </label><input type="text" name="prenom" id="prenom"/>
+            <label for="ville">Ville : </label><input type="text" name="ville" id="ville"/>
+            <button  name="valider" id="valider" onclick="validate()">Valider</button>
+        </form>
+        <script>
+                // Exercice : Refaire l’exercice 2 en demandant le nom, le prénom et la ville à l’utilisateur.
+            
+                function validate(){
+                    let nom = document.getElementById("nom").value;
+                    let prenom = document.getElementById("prenom").value;
+                    let ville = document.getElementById("ville").value;
+                    alert("Votre Nom : " + nom + "\nVotre Prénom : " + prenom + "\nVotre Ville : " + ville);
+                }
+
+                
+            </script>
+    </body>
+</html>

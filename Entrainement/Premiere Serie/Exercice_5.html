@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Exercice 5</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+
+<body>
+        <form>
+        <label for="premier_nombre">Premier nombre : </label><input type="text" id="premier_nombre" name="premier_nombre"/><br/>
+        <label for="deuxieme_nombre">Deuxième nombre : </label><input type="text" id="deuxieme_nombre" name="deuxieme_nombre"/><br/>
+        <button  id="valider" name ="valider" onclick="validate()">Valider</button>
+        </form>
+        
+    <script>
+        // Exercice : Demander à l’utilisateur deux nombres à virgule. Ne garder que la partie entière du premier. Les multiplier et afficher le résultat dans une boîte de dialogue.
+        
+        function validate(){
+            let nombre_virgule = document.getElementById("premier_nombre").value;
+        let nombre_rond = document.getElementById("deuxieme_nombre").value;
+
+        nombre_virgule = Math.trunc(nombre_virgule);
+        let multiply = nombre_virgule * nombre_rond;
+        alert(multiply);
+                }
+
+    </script>
+</body>
+
+</html>
