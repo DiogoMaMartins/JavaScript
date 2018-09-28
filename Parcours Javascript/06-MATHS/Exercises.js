@@ -34,7 +34,7 @@ console.log("------------------------");
 let random_var = Math.floor((Math.random() * 100) + 1);
 let random_var2 = Math.random();
 let random_var3 = Math.floor((Math.random() * 10) + 1);
-console.log(random_var);
+console.log(random_var3);
 
 console.log("------------------------");
 console.log("Exercice 4 : Aléatoire 3");

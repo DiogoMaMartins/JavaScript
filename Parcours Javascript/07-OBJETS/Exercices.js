@@ -21,12 +21,14 @@ for (let key in character){
     console.log(character[key]);
     
 }
+
+
 character.giveItem();
 
 console.log("------------------------");
 console.log("Exercice 2 : Shop");
 console.log("------------------------");
-let objet_a_vendre = ["Sword", "Bow", "Arrow", "Shield"];
+
 
 
 let sword = {
@@ -94,7 +96,7 @@ let character2 = {
     name : "",
     level : 0,
     life : 0,
-    weapon : weapon = {
+    weapon : {
         name : "",
         dammage : 0
         
@@ -111,7 +113,7 @@ let opponentCharacter = {
     name : "Monstre",
     level : 125,
     life : 50000,
-    weapon : Sword = {
+    weapon : {
         name : "Sword",
         dammage : 25
         
@@ -151,4 +153,15 @@ let mainCharacter = {
 
 mainCharacter.attack();
 
+
+
+
+function MaClass (dsf , dsfs){
+    this.name = dsf;
+    this.baba = dsfs;
+}
+
+let Objet = new MaClass("Florentin", 12);
+
+console.log(Objet);
 
