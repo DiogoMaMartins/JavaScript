@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <style>
+        .hoverme {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+            margin: 10px;
+        }
+
+        @keyframes yourAnimation{
+            0%{
+                opacity: 0;
+                }
+            25% {
+                    opacity: 0.5;
+                }
+            50%{
+                opacity: 0.75;
+                }
+
+            100%{
+                opacity: 1;
+                }
+        }
+
+        .elementToAnimate{
+            animation: yourAnimation 3s 0s linear;
+        }
+
+        #reset {
+            height: 100px;
+            width: 100px;
+            background-color: blue;
+            margin: 10px;
+            float: right;
+        }
+    </style>
+    <div class="hoverme"></div>
+    <div class="hoverme"></div>
+    <div class="hoverme"></div>
+
+    <div id="reset"></div>
+
+    <div id="axe-y"></div>
+    <div id="axe-x"></div>
+    <script>
+
+        // Faire disparaitre les divs lorsque l'on passe la souris dessus
+
+        let hoverDiv = document.querySelectorAll(".hoverme");
+        
+        for (let index = 0; index < hoverDiv.length; index++) {
+            const element = hoverDiv[index];
+                element.addEventListener("mouseover", function( event ) {
+                    event.target.style.display = "none";
+                
+            })
+        };
+
+        // Faire de sorte que quand on clique dessus elle fasse réaparaitre les 3 divs premièrement créé
+        let reset = document.getElementById("reset");
+        
+        let Show = function(){
+            for (let index = 0; index < hoverDiv.length; index++) {
+                const element = hoverDiv[index];
+                element.classList.add("elementToAnimate");
+                element.style.display= "block";
+                
+            }
+        }
+        reset.addEventListener("click", Show);
+
+
+        // Faire de sorte que lorsque l'on bouge la souris dans la fenêtre, la position sois affiché dans les divs associés
+        let posX = document.getElementById("axe-x");
+        let posY = document.getElementById("axe-y");
+        
+
+        let bodyAll = document.querySelector("body");
+
+        if (bodyAll){
+            addEventListener("mousemove", function(event){
+            let locX = event.clientX;
+            let locY = event.clientY; 
+            let coordonneeX = "Position X : " + locX;
+            let coordonneeY = "Position Y : " + locY;
+            posX.innerText = coordonneeX;
+            posY.innerText = coordonneeY;
+        })
+        }
+
+        
+
+        
+        
+        
+
+       
+
+
+        
+        
+    </script>
+</body>
+</html>
