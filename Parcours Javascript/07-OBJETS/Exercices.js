@@ -22,7 +22,6 @@ for (let key in character){
     
 }
 
-
 character.giveItem();
 
 console.log("------------------------");
@@ -92,76 +91,37 @@ console.log("------------------------");
 console.log("Exercice : Adversaire");
 console.log("------------------------");
 
-let character2 = {
-    name : "",
-    level : 0,
-    life : 0,
-    weapon : {
-        name : "",
-        dammage : 0
-        
-    },
-    attack : function (){
-
-    },
-    recieveDamage : function (){
-
+class Character {
+    constructor (name, level, life) {
+        this.name = name;
+        this.level = level;
+        this.life = life;
+        this.weapon = {
+            name : "",
+            dammage : 2
+        }
     }
-}
-
-let opponentCharacter = {
-    name : "Monstre",
-    level : 125,
-    life : 50000,
-    weapon : {
-        name : "Sword",
-        dammage : 25
-        
-    },
-    attack : function (){
-
-    },
-    recieveDamage : function (){
-
+    attack(attacker){
+        const dommage = this.weapon.dammage * this.level;
+        console.log(this.name + " attaque " + attacker.name + " avec " + this.weapon.name + " et lui inflige : " + dommage);
     }
-}
 
-let Bow = {
-    name : "Bow",
-    dammage : 25
+    recieveDammage (){
+        const dommage = this.weapon.dammage * this.level;
+        let lifeCalcul = this.life - dommage;
+        console.log (this.name + " recois " + dommage + " il lui reste " + lifeCalcul);
+    }
+
     
 }
 
-let mainCharacter = {
-    name : "iSevenBe",
-    level : 125,
-    life : 50000,
-    weapon : Bow,
-    attack : function (){
-        let calcul_dammage = mainCharacter.level * mainCharacter.weapon.dammage;
-        let calcul_vie = opponentCharacter.life - calcul_dammage;
-        console.log(mainCharacter.name + " Attaque " + opponentCharacter.name)
-        console.log("Avec l'arme : " + mainCharacter.weapon.name);
-        
-        console.log("Et lui inflige : " + calcul_dammage);
-        console.log(opponentCharacter.name + " a maintenant " + calcul_vie + " de vie");
-    },
-    recieveDamage : function (){
+let perso = new Character("Flo", 5, 10000);
+perso.weapon.name = "Axe";
+perso.weapon.dammage = 10;
 
-    }
-}
+let ennemy = new Character("Skeleton", 2, 10000);
+ennemy.weapon.name = "Sword";
+ennemy.weapon.dammage = 10;
 
-mainCharacter.attack();
-
-
-
-
-function MaClass (dsf , dsfs){
-    this.name = dsf;
-    this.baba = dsfs;
-}
-
-let Objet = new MaClass("Florentin", 12);
-
-console.log(Objet);
-
+perso.attack(ennemy);
+perso.recieveDammage(ennemy.life);
