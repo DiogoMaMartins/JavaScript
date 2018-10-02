@@ -124,3 +124,12 @@ function jourDeLaSemaine() {
     }
     alert(day)
 }
+
+// Exercice 9 - utilisation de la boucle while
+let testWhile = function (){
+    let lettreP = prompt("Ajouter la lettre P");
+    while (lettreP != "p") {
+        lettreP = prompt("Ajouter la lettre P");
+        
+    } 
+}
