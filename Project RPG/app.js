@@ -1,4 +1,5 @@
 
+
 class Arme {
     constructor(weaponName, minLevel, minDammage, maxUse) {
         this.weaponName = weaponName;
@@ -8,7 +9,7 @@ class Arme {
     }
 
     maxUsechecker (){
-        // let charge;
+        let charge;
         if (this.maxUse != 0){
             if (this.maxUse >= 1){
                 charge = " charges";
@@ -25,13 +26,13 @@ class Arme {
         }
     }
 
-    levelChecker (){
-        
-        if (Pnj.level == this.minLevel){
+    levelChecker (level){
+
+        if (level == this.minLevel){
         
             console.log("Vous utilisez " + this.weaponName);
         } else {
-            console.log("vous n'avez pas le niveau pour utilister " + this.weaponName);
+            console.log("vous n'avez pas le niveau pour utilister " + this.weaponName + " le niveau requis est du : " + this.minLevel);
         }
     }
 
@@ -39,38 +40,37 @@ class Arme {
 
 class Pnj {
     
-    constructor(name, level, life) {
+    constructor(name, level, life, weapon) {
         
         this.name = name;
         this.level = level;
         this.life = life;
-        this.weapon = Arme;
+        this.weapon = weapon;
         
     }
 
-    functionRecievedammage(calculDommage) {
+    fonctionRecievedammage(calculDommage) {
         this.life -= calculDommage;
         console.log("il reste " + this.life + " de vie a " + this.name);
     }
 
-    fonctionAttack(ennemyName, weaponHolder) {
-        
-        armeObjet.levelChecker(Arme.weaponName);
-        let calculDommage = this.level * blunt.minDammage;
-        console.log(this.name + " attaque " + ennemyName.name + " avec " + blunt.weaponName + " et lui inflige " + calculDommage);
-        ennemyName.functionRecievedammage(calculDommage);
-        // Arme.maxUsechecker();
+    fonctionAttack(ennemyName) {
+
+        let level = this.level;
+        this.weapon.levelChecker(level);
+        let calculDommage = this.level * this.weapon.minDammage;
+        console.log(this.name + " attaque " + ennemyName.name + " avec " + this.weapon.weaponName + " et lui inflige " + calculDommage);
+        ennemyName.fonctionRecievedammage(calculDommage);
+        this.weapon.maxUsechecker();
         
     }
 }
 
-let perso = new Pnj("iSevenBe", 5, 1);
-let blunt = new Arme("blunt", 10, 25, 1);
-let armeObjet = new Arme();
-perso.weapon.name = blunt.name;
 
-
+let blunt = new Arme("blunt", 10, 25, 50);
 let ennemy = new Pnj("Skeleton", 2, 10000);
-ennemy.weapon.name = "Sword";
-ennemy.weapon.dammage = 10;
+let perso = new Pnj("iSevenBe", 10, 1, blunt);
+
+console.dir(perso)
+
 perso.fonctionAttack(ennemy);
