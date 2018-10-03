@@ -1,0 +1,74 @@
+.top {
+    display: flex;
+    height: 50vh;
+    min-width: 100vw;
+
+}
+
+.characterInfo,
+.shop {
+    min-width: 49vw;
+}
+
+.centerContent {
+    text-align: center;
+}
+
+.fieldset {
+    min-height: 40vh;
+}
+
+li {
+    list-style: none;
+}
+
+.inLine,
+.objectInStock {
+    display: inline;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+}
+
+.barre {
+    width: 85%;
+    background-color: #ddd;
+}
+
+.skill {
+    text-align: right;
+    padding: 10px;
+    color: white;
+}
+
+/* Pourcentage de mes barre  */
+
+.xpPercent {
+    /* width: 70%; */
+    background-color: green;
+}
+
+.xpbar {
+    width: 50%;
+}
+
+
+.attacker {
+    position: absolute;
+    /* transform: translateX(1299%); */
+    transform: translateX(50%);
+    background-color: blue;
+    height: 100px;
+    width: 100px;
+}
+
+.ennemy {
+    position: absolute;
+    /* transform: translateX(151%); */
+    transform: translateX(1400%);
+    background-color: red;
+    height: 100px;
+    width: 100px;
+}

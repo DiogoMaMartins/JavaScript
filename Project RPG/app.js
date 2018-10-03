@@ -1,4 +1,5 @@
 
+
 class Arme {
     constructor(weaponName, minLevel, minDammage, maxUse) {
         this.weaponName = weaponName;
@@ -8,69 +9,128 @@ class Arme {
     }
 
     maxUsechecker (){
-        // let charge;
+        let charge;
         if (this.maxUse != 0){
-            if (this.maxUse >= 1){
+            if (this.maxUse > 1){
                 charge = " charges";
             } else {
                 charge = " charge";
             }
             this.maxUse--;
-            console.log("Vous avez perdu une charge");
-            console.log("Il vous reste " + this.maxUse + charge);
+            console.log("Vous avez perdu une charge " + "Il vous reste " + this.maxUse + charge);
         } else {
-
             console.log("Votre " + this.weaponName + " plus de charge");
-
         }
     }
 
-    levelChecker (){
-       // Recuperer le nom de l'arme ici
-        if (Pnj.level == this.minLevel){
+    levelChecker (level){
 
-            console.log("Vous utilisez " + this.weaponName);
+        if (level >= this.minLevel){
+            console.log("Vous utilisez un " + this.weaponName);
         } else {
-            console.log("vous n'avez pas le niveau pour utilister " + this.weaponName);
+            console.log("Vous n'avez pas le niveau pour utilister " + this.weaponName + " le niveau requis est du : " + this.minLevel);
         }
     }
 
 }
 
 class Pnj {
-
-    constructor(name, level, life, weapon) {
-
+    
+    constructor(name, level, life, weapon, xppoint) {
         this.name = name;
         this.level = level;
         this.life = life;
-        this.weapon = Arme;
-
+        this.weapon = weapon;
+        this.xppoint = xppoint;
     }
 
-    functionRecievedammage(calculDommage) {
+    fonctionRecievedammage(calculDommage) {
         this.life -= calculDommage;
         console.log("il reste " + this.life + " de vie a " + this.name);
+        
     }
 
-    fonctionAttack(ennemyName, nameOfweapon) {
-        // this.weapon = Arme;
-        levelChecker(nameOfweapon);
+    fonctionAttack(ennemyName) {
+        
+        if (this.weapon.maxUse != 0){
+            if (ennemyName.life > 0){
+                
+                let level = this.level;
+                this.weapon.levelChecker(level);
+            
+                let calculDommage = this.level * this.weapon.minDammage;
+                console.log(this.name + " attaque " + ennemyName.name + " avec " + this.weapon.weaponName + " et lui inflige " + calculDommage);
+                ennemyName.fonctionRecievedammage(calculDommage);
+                this.weapon.maxUsechecker();
+                this.fonctionAfficherStat();
+            } else {
+                
+                console.log(ennemyName.name + " est mort !");
+               this.fonctionCalculxp(ennemyName);
+               ennemyName.life = -1;
+                
+            }
+        } else {
+            console.log("Vous n'avez plus de charge ! ");
+        }
+    }
+    fonctionCalculxp(ennemyName){
+        if (ennemyName.life == 0){
+            let gainXP = Math.round(Math.random() * 1000) + 1;
+            this.xppoint += gainXP
+            console.log("Vous avez obtenu " + gainXP + " vous avez un total de " + this.xppoint + " XP");
+            this.fonctionLevelUp();
+            this.fonctionAfficherStat();
+        } else {
+            //Keep Farming
+            
+        }
 
-        let calculDommage = this.level * blunt.minDammage;
-        console.log(this.name + " attaque " + ennemyName.name + " avec " + blunt.weaponName + " et lui inflige " + calculDommage);
-        ennemyName.functionRecievedammage(calculDommage);
-        // Arme.maxUsechecker();
+        
+    }
+    fonctionLevelUp (){
+        if (this.xppoint >= 1000){
+            this.xppoint -= 1000;
+            this.level++;
+            console.log ("Vous avez monter de niveau !");
+            this.fonctionAfficherStat();
+        } else {
 
+        }
+    }
+    fonctionAfficherStat (){
+        let characterName = document.querySelector("#name");
+        characterName.innerHTML = "Name : " + this.name;
+        let characterWeapon = document.querySelector("#weapon");
+        characterWeapon.innerHTML = "Weapon : " + this.weapon.weaponName;
+        let characterLevel = document.querySelector("#level");
+        characterLevel.innerHTML = "Level : " + this.level;
+
+        // XP Affichage XP
+        let xp = document.querySelector(".xpPercent");
+        let myXPtoPercent = this.xppoint / 10;
+        xp.style.width =  myXPtoPercent + "%";
+        xp.innerHTML = (this.xppoint / 10) + "%";
+        
     }
 }
-let blunt = new Arme("blunt", 10, 25, 1);
-let perso = new Pnj("iSevenBe", 10, 1, blunt);
-console.dir(perso)
-let emptyWeapon = new Arme()
 
 
-let ennemy = new Pnj("Skeleton", 2, 10000);
-// ennemy.weapon.name = "Sword";
-// ennemy.weapon.dammage = 10;
-perso.fonctionAttack(ennemy);
+
+class Skills {
+    constructor (id, name, power, manacost, requirelevel){
+        this.skillID = id;
+        this.name = name;
+        this.power = power;
+        this.manaCost = manacost;
+        this.requireLevel = requirelevel;
+    }
+}
+
+let sword = new Arme("Sword", 5, 25, 150);
+let blunt = new Arme("blunt", 10, 25, 10);
+let ennemy = new Pnj("Skeleton", 2, 2000);
+let perso = new Pnj("Pseudo_Perso", 10, 1, sword, 526);
+
+// perso.fonctionAfficherStat ();
+// Pnj.fonctionAfficherStat ();

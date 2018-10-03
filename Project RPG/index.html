@@ -1,26 +1,75 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Project RPG</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
     <script src="app.js"></script>
 </head>
-<body>
-    <form action="">
-        <label for="pseudo"></label>
-        <input type="text" name="pseudo" id="pseudo" class="pseudo">
-        <br>
-        <label for="level"></label>
-        <input type="number" name="level" id="level" class="level">
-        <br>
 
-    </form>
 
-    <div class="result">
+<body onload="perso.fonctionAfficherStat (level)">
+    <section class="top">
+        <section class="characterInfo">
 
-    </div>
+            <fieldset class="fieldset">
+                <legend>
+                    <h2>Character Information</h2>
+
+                </legend>
+                <div class="stats">
+                    <ul>
+                        <li id="name"></li>
+                        <li id="level"></li>
+                        <li id="weapon"> </li>
+
+                    </ul>
+
+                    <div class="xpbar">
+                        <div class="barre">
+                            <div class="skill xpPercent centerContent">
+                            </div>
+                        </div>
+                    </div>
+            </fieldset>
+        </section>
+        <button onclick="perso.fonctionAttack(ennemy)">Attack</button>
+        <section class="shop">
+            <fieldset class="fieldset">
+                <legend>
+                    <h2>Shop</h2>
+                </legend>
+                <h3 class="centerContent">Stuff to sell : </h3>
+                <ul class="inLine">
+                    <li class="objectInStock">Stuff 1</li>
+                    <li class="objectInStock">Stuff 2</li>
+                    <li class="objectInStock">Stuff 3</li>
+                    <li class="objectInStock">Stuff 4</li>
+                    <li class="objectInStock">Stuff 5</li>
+                </ul>
+            </fieldset>
+
+        </section>
+    </section>
+
+    <section class="bottom centerContent">
+        <fieldset class="fieldset">
+            <legend>
+                <h2>Fighting Zone</h2>
+            </legend>
+            <div class="combatZone">
+                <div class="attacker">
+                </div>
+                <div class="ennemy">
+                </div>
+            </div>
+
+        </fieldset>
+    </section>
 </body>
+
 </html>

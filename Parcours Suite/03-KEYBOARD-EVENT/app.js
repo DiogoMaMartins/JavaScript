@@ -37,48 +37,48 @@ addEventListener("keydown", function (event) {
     }
 });
 
-let up = document.getElementById("up");
-let down = document.getElementById("down");
-let right = document.getElementById("right");
-let left = document.getElementById("left");
-addEventListener("keydown", function (event) {
-    switch (event.keyCode) {
+// let up = document.getElementById("up");
+// let down = document.getElementById("down");
+// let right = document.getElementById("right");
+// let left = document.getElementById("left");
+// addEventListener("keydown", function (event) {
+//     switch (event.keyCode) {
 
-        case 37:
-            left.classList.add('highlight');
-            break;
+//         case 37:
+//             left.classList.add('highlight');
+//             break;
 
-        case 38:
-            up.classList.add('highlight');
-            break;
+//         case 38:
+//             up.classList.add('highlight');
+//             break;
 
-        case 39:
-            right.classList.add('highlight');
-            break;
+//         case 39:
+//             right.classList.add('highlight');
+//             break;
 
-        case 40:
-            down.classList.add('highlight');
-            break;
-    }
-})
+//         case 40:
+//             down.classList.add('highlight');
+//             break;
+//     }
+// })
 
-addEventListener("keyup", function (event) {
-    switch (event.keyCode) {
+// addEventListener("keyup", function (event) {
+//     switch (event.keyCode) {
 
-        case 37:
-            left.classList.remove('highlight');
-            break;
+//         case 37:
+//             left.classList.remove('highlight');
+//             break;
 
-        case 38:
-            up.classList.remove('highlight');
-            break;
+//         case 38:
+//             up.classList.remove('highlight');
+//             break;
 
-        case 39:
-            right.classList.remove('highlight');
-            break;
+//         case 39:
+//             right.classList.remove('highlight');
+//             break;
 
-        case 40:
-            down.classList.remove('highlight');
-            break;
-    }
-})
+//         case 40:
+//             down.classList.remove('highlight');
+//             break;
+//     }
+// })

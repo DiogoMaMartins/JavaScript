@@ -28,31 +28,19 @@ console.log("------------------------");
 console.log("Exercice 2 : Shop");
 console.log("------------------------");
 
-
-
-let sword = {
-    title: "Epee",
-    physic: 150,
-    magic: 1,
-    minLevel: 10,
-    available: true
+class Shop {
+    constructor (title, physic, magic, minLevel, available){
+        this.title = title;
+        this.physic = physic;
+        this.magic = magic;
+        this.minLevel = minLevel;
+        this.available = available;
+    }
 }
 
-let bow = {
-    title: "Arc",
-    physic: 12,
-    magic: 1,
-    minLevel: 7,
-    available: false
-}
-
-let staff = {
-    title: "Baton",
-    physic: 1,
-    magic: 150,
-    minLevel: 1,
-    available: true
-}
+let sword = new Shop("Sword", 10,0,15,true);
+let bow = new Shop("Bow", 10,0,15,false);
+let staff = new Shop("Staff", 10,50,15,true);
 
 let arr = [sword, bow, staff];
 
@@ -82,62 +70,3 @@ function afficher_level10() {
 afficher_level10();
 afficher_tout();
 is_available();
-
-console.log("______________________");
-console.log("Exercices : BONUS");
-console.log("______________________");
-
-console.log("------------------------");
-console.log("Exercice : Adversaire");
-console.log("------------------------");
-
-class Arme {
-    constructor(name, minLevel, minDammage) {
-        this.name = name;
-        this.minLevel = minLevel
-        this.minDammage = minDammage;
-    }
-
-}
-
-class Pnj {
-    constructor(name, level, life) {
-        this.name = name;
-        this.level = level;
-        this.life = life;
-        this.weapon = {
-            name: "",
-            dammage: 2
-        };
-    }
-
-    functionRecievedammage(calculDommage) {
-        this.life -= calculDommage;
-        console.log("il reste " + this.life + " de vie a " + this.name);
-    }
-
-    fonctionAttack(skelette) {
-        let calculDommage = this.level * blunt.minDammage;
-        console.log(this.name + " attaque " + skelette.name + " avec " + this.weapon.name + " et lui inflige " + calculDommage);
-        skelette.functionRecievedammage(calculDommage);
-    }
-
-
-
-
-}
-
-let perso = new Pnj("iSevenBe", 5, 1);
-let blunt = new Arme("blunt", 10, 25);
-perso.weapon.name = blunt.name;
-
-
-let ennemy = new Pnj("Skeleton", 2, 10000);
-ennemy.weapon.name = "Sword";
-ennemy.weapon.dammage = 10;
-
-// let ennemy2 = new Pnj("Blah", 2, 100);
-// ennemy2.weapon.name = "Sword";
-// ennemy2.weapon.dammage = 100;
-
-perso.fonctionAttack(ennemy);
