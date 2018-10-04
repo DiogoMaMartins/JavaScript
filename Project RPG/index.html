@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
-    <script src="app.js"></script>
+    
 </head>
 
 
-<body onload="perso.fonctionAfficherStat (level)">
+<body onload="perso.fonctionAfficherStat (ennemy)">
     <section class="top">
         <section class="characterInfo">
 
@@ -22,22 +22,35 @@
 
                 </legend>
                 <div class="stats">
+                    <!-- <h3 class="yourStats">Your Stats</h3> -->
                     <ul>
                         <li id="name"></li>
                         <li id="level"></li>
                         <li id="weapon"> </li>
-
+                        <li id="life"></li>
+                        <li id="charge"></li>
                     </ul>
+                    <!-- <h3 id="ennemyStats">Ennemy Stats</h3> -->
+                    <ul>
+                            <li id="ennemyName"></li>
+                            <li id="ennemyLevel"></li>
+                            <li id="ennemyWeapon"></li>
+                            <li id="ennemyLife"></li>
+                        </ul>
+
 
                     <div class="xpbar">
+                            <h4 id="yourXP"></h4>
                         <div class="barre">
+                            
                             <div class="skill xpPercent centerContent">
                             </div>
                         </div>
                     </div>
             </fieldset>
         </section>
-        <button onclick="perso.fonctionAttack(ennemy)">Attack</button>
+        <button id="fight" onclick="startGame();">Start Game</button>
+        <button id="fightON" onclick="characterAttack();">Attack</button>
         <section class="shop">
             <fieldset class="fieldset">
                 <legend>
@@ -70,6 +83,9 @@
 
         </fieldset>
     </section>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/weapon.js"></script>
 </body>
 
 </html>

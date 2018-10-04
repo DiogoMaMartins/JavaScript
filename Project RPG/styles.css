@@ -72,3 +72,43 @@ li {
     height: 100px;
     width: 100px;
 }
+
+
+/* go to fight zone */
+/* I hope this was helpful! */
+/* Follow me on Twitter 🐤 @sleumasm to see what I'm up to. */
+/* Also check out my other project I'm working on - Ceev.io. A pretty cool online resume creator 📃. */
+
+@keyframes moveBlue{
+    0%{
+        transform: translateX(50%);
+        }
+    100%{
+        transform: translateX(650%);
+        }
+}
+
+.blueAnimation{
+    animation: moveBlue 3s 0s linear forwards;
+}
+
+
+@keyframes moveRed{
+    0%{
+        }
+    100%{
+        transform: translateX(750%);
+        }
+}
+
+.redAnimation{
+    animation: moveRed 3s 0s linear forwards;
+}
+
+#fightON {
+    visibility: hidden;
+}
+
+#fight {
+    visibility: visible;
+}
