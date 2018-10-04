@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
+    <!-- <script src="main.js"></script> -->
+</head>
+
+<body>
+    <script>
+        let array = ['B', 'O', 'N', 'J', 'O', 'U', 'R'];
+        let array2 = ['', '', '', '', '', '', ''];
+        let keep = true;
+        // console.log(a);
+        function guessLetter(lettre) {
+            let letterFound = false;
+            for (let index = 0; index < array.length; index++) {
+                if (lettre == array[index]) {
+                    array2[index] = lettre;
+                    letterFound = true;
+                    console.log(array2)
+
+                }
+            }
+            if(letterFound == false){
+                console.log("Lettre pas dans le tableau");
+            }
+        }
+
+
+
+
+
+        while (keep == true) {
+            lettre = prompt("Entrez une lettre");
+            guessLetter(lettre);
+            if (array.toString() == array2.toString()) {
+                keep = false;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

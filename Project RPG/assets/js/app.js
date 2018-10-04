@@ -180,9 +180,11 @@ function characterAttack() {
     if (ennemyLife > 0) {
         perso.fonctionMainAttack(ennemy, perso);
         perso.weapon.maxUsechecker();
+        perso.fonctionAfficherStat(ennemy);
     } else {
         console.log(ennemy.name + " est mort !");
         perso.fonctionCalculxp(ennemy);
+        perso.fonctionAfficherStat(ennemy);
         ennemy.life = -1;
     }
 
