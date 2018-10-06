@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
-    
+
 </head>
 
 
-<body onload="perso.fonctionAfficherStat (ennemy)">
+<body onload="perso.fonctionAfficherStat (ennemy); loadShop()">
     <section class="top">
         <section class="characterInfo">
 
@@ -29,20 +29,22 @@
                         <li id="weapon"> </li>
                         <li id="life"></li>
                         <li id="charge"></li>
+                        <li id="dammage"></li>
                     </ul>
                     <!-- <h3 id="ennemyStats">Ennemy Stats</h3> -->
                     <ul>
-                            <li id="ennemyName"></li>
-                            <li id="ennemyLevel"></li>
-                            <li id="ennemyWeapon"></li>
-                            <li id="ennemyLife"></li>
-                        </ul>
+                        <li id="ennemyName"></li>
+                        <li id="ennemyLevel"></li>
+                        <li id="ennemyWeapon"></li>
+                        <li id="ennemyLife"></li>
+                        <li id="ennemyDammage"></li>
+                    </ul>
 
 
                     <div class="xpbar">
-                            <h4 id="yourXP"></h4>
+                        <h4 id="yourXP"></h4>
                         <div class="barre">
-                            
+
                             <div class="skill xpPercent centerContent">
                             </div>
                         </div>
@@ -57,13 +59,14 @@
                     <h2>Shop</h2>
                 </legend>
                 <h3 class="centerContent">Stuff to sell : </h3>
-                <ul class="inLine">
-                    <li class="objectInStock">Stuff 1</li>
-                    <li class="objectInStock">Stuff 2</li>
-                    <li class="objectInStock">Stuff 3</li>
-                    <li class="objectInStock">Stuff 4</li>
-                    <li class="objectInStock">Stuff 5</li>
+                <ul>
+                    <li class="objectInStock" id="objectInStock1"></li>
+                    <li class="objectInStock" id="objectInStock2"></li>
+                    <li class="objectInStock" id="objectInStock3"></li>
+                    <li class="objectInStock" id="objectInStock4"></li>
+                    <li class="objectInStock" id="objectInStock5"></li>
                 </ul>
+
             </fieldset>
 
         </section>
@@ -85,7 +88,6 @@
     </section>
 
     <script src="assets/js/app.js"></script>
-    <script src="assets/js/weapon.js"></script>
 </body>
 
 </html>

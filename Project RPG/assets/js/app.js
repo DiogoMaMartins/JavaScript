@@ -1,9 +1,12 @@
-class Arme {
-    constructor(weaponName, minLevel, minDammage, maxUse) {
+let interval;
+
+class Weapon {
+    constructor(weaponName, minLevel, weaponDammage, maxUse, price) {
         this.weaponName = weaponName;
         this.minLevel = minLevel;
-        this.minDammage = minDammage;
+        this.weaponDammage = weaponDammage;
         this.maxUse = maxUse;
+        this.price = price
     }
 
     maxUsechecker() {
@@ -33,35 +36,33 @@ class Arme {
 
 class Pnj {
 
-    constructor(name, level, life, weapon, xppoint, alive) {
+    constructor(name, level, life, weapon, xppoint, alive, mygold) {
         this.name = name;
         this.level = level;
         this.life = life;
         this.weapon = weapon;
         this.xppoint = xppoint;
         this.alive = alive;
+        this.mygold = mygold;
     }
 
     fonctionRecievedammageEnnemy(calculDommage, mainCharacter) {
-        // let calculDommage = this.level * this.weapon.minDammage;
         this.life -= calculDommage;
         if (this.life < 0) {
             this.alive = false;
             this.life = 0;
             mainCharacter.fonctionCalculxp();
             isAlive = false;
+            clearInterval(interval);
             let fight = document.querySelector("#fight");
             let fightON = document.querySelector("#fightON");
             fight.style.visibility = "visible";
             fightON.style.visibility = "hidden";
 
         }
-
-        console.log("life: ", this.life)
-
     }
 
-    fonctionRecievedammageMain(calculEnnemyDommage, interval) {
+    fonctionRecievedammageMain(calculEnnemyDommage) {
         this.life -= calculEnnemyDommage;
         if (this.life < 0) {
             this.life = 0;
@@ -72,23 +73,19 @@ class Pnj {
             let fightON = document.querySelector("#fightON");
             fight.style.visibility = "visible";
             fightON.style.visibility = "hidden";
-        } else {
-
         }
-        console.log("life: ", this.life)
     }
 
     fonctionMainAttack(ennemyName, mainCharacter) {
-        let calculDommage = this.level * this.weapon.minDammage;
+        let calculDommage = this.level * this.weapon.weaponDammage;
         ennemyName.fonctionRecievedammageEnnemy(calculDommage, mainCharacter);
     }
 
     fonctionEnnemyAttack(mainCharacter) {
-        let calculDommage = this.level * this.weapon.minDammage;
-        mainCharacter.fonctionRecievedammageMain(calculDommage, mainCharacter);
+        
+        let calculDommage = this.level * this.weapon.weaponDammage;
+        mainCharacter.fonctionRecievedammageMain(calculDommage, mainCharacter, interval);
         mainCharacter.fonctionAfficherStat(this);
-
-
     }
 
     fonctionCalculxp() {
@@ -97,7 +94,9 @@ class Pnj {
         console.log("Vous avez obtenu " + gainXP + " vous avez un total de " + this.xppoint + " XP");
         this.fonctionLevelUp();
     }
+
     fonctionLevelUp() {
+        let levelingCalcul = this.level * 1000;
         if (this.xppoint >= 1000) {
             this.xppoint -= 1000;
             this.level++;
@@ -107,8 +106,10 @@ class Pnj {
 
         }
     }
-    fonctionAfficherStat(ennemyName) {
 
+    fonctionAfficherStat(ennemyName) {
+        //Character
+        let characterCalculDammage = this.weapon.weaponDammage * this.level;
         let characterName = document.querySelector("#name");
         characterName.innerHTML = "Name : " + this.name;
         let characterWeapon = document.querySelector("#weapon");
@@ -119,15 +120,18 @@ class Pnj {
         characterLife.innerHTML = "Life : " + this.life;
         let characterCharge = document.querySelector("#charge");
         characterCharge.innerHTML = "Charge : " + this.weapon.maxUse;
+        let characterDammage = document.querySelector("#dammage");
+        characterDammage.innerHTML = "Dammage : " + characterCalculDammage;
 
         //Ennemy 
         let ennemyNames = document.querySelector("#ennemyName");
         ennemyNames.innerHTML = "Name : " + ennemyName.name;
-
         let ennemyLevel = document.querySelector("#ennemyLevel");
         ennemyLevel.innerHTML = "Level : " + ennemyName.level;
         let ennemyLife = document.querySelector("#ennemyLife");
         ennemyLife.innerHTML = "Life : " + ennemyName.life;
+        let ennemyDammage = document.querySelector("#ennemyDammage");
+        ennemyDammage.innerHTML = "Dammage : " + ennemyName.weapon.weaponDammage;
 
         // XP Affichage XP
         let xp = document.querySelector(".xpPercent");
@@ -141,22 +145,52 @@ class Pnj {
     }
 }
 
-
 let randomInterval = Math.floor(Math.random() * 300 + 800)
 let fight = document.querySelector("#fight");
 let fightON = document.querySelector("#fightON");
-let interval;
 let blueSquare = document.querySelector(".attacker");
 let redSquare = document.querySelector(".ennemy");
+
+
+function loadShop() {
+    
+    let objectInStock1 = document.querySelector("#objectInStock1");
+    objectInStock1.innerHTML = "Weapon Name : " + RandomizeObject1.weaponName + " <br> Price : " + RandomizeObject1.price + 
+    " <button onclick='fonctionBuyWeapon(RandomizeObject1)'>Buy</button>" + "<br> Weapon Dammage :" + RandomizeObject1.weaponDammage
+    + "<br> Charge : " + RandomizeObject1.maxUse + "<br><button onclick='reloadShop()';>Reload</button>";
+    perso.fonctionAfficherStat(ennemy);
+    
+}
+
+function reloadShop(){
+    RandomizeObject1 = weaponNameList[Math.floor(Math.random() * weaponNameList.length)];
+    perso.fonctionAfficherStat(ennemy);
+    loadShop();
+}
+
+function fonctionBuyWeapon(requireWeapon) {
+    if (perso.mygold >= requireWeapon.price) {
+        perso.weapon = requireWeapon;
+        perso.fonctionAfficherStat(ennemy);
+        reloadShop();
+        loadShop();
+    } else {
+        alert("Not Money");
+    }
+
+}
 
 function startGame() {
     let characterAlive = perso.alive;
     let ennemyAlive = ennemy.alive;
-    let characterLife = perso.life;
     let weaponCharge = perso.weapon.maxUse;
     let weaponLevel = perso.weapon.minLevel;
     let characterLevel = perso.level;
-    if (ennemyAlive != false || characterAlive != false) {
+    let level = perso.level;
+    if(ennemyAlive != false){
+
+    
+    if (characterAlive != false) {
         if (weaponCharge != 0) {
             if (characterLevel > weaponLevel) {
 
@@ -165,13 +199,8 @@ function startGame() {
                 ennemyAttack();
                 fight.style.visibility = "hidden";
                 fightON.style.visibility = "visible";
-                let level = perso.level;
+
                 perso.weapon.levelChecker(level);
-
-                console.log("life", characterLife);
-
-                console.log("weapon charge", weaponCharge);
-
                 perso.fonctionAfficherStat(ennemy);
             } else {
             }
@@ -180,8 +209,8 @@ function startGame() {
         }
     } else {
         console.log("You are dead !");
-
     }
+}
 }
 let isAlive = true;
 function characterAttack(isAlive) {
@@ -198,9 +227,6 @@ function characterAttack(isAlive) {
         perso.fonctionAfficherStat(ennemy);
         perso.fonctionCalculxp(ennemy);
         isAlive = true;
-
-
-
     }
 
 }
@@ -210,8 +236,14 @@ function ennemyAttack() {
 
 }
 
-let sword = new Arme("Sword", 5, 25, 150);
-let blunt = new Arme("blunt", 10, 15, 10);
 
-let ennemy = new Pnj("Skeleton", 2, 80, blunt, 0, true);
-let perso = new Pnj("Pseudo_Perso", 10, 50000, sword, 526, true);
+let ennemyWeapon = new Weapon("EnnemyWeapon", 0 , 50, 0, 0)
+let blade = new Weapon("Blade", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1);
+let blunt = new Weapon("Blunt", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1);
+let katana = new Weapon("Katanna", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1);
+let sword = new Weapon("Sword", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1);
+let axe = new Weapon("Axe", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1);
+let weaponNameList = [blade, blunt, katana, sword, axe];
+let RandomizeObject1 = weaponNameList[Math.floor(Math.random() * weaponNameList.length)];
+let ennemy = new Pnj("Skeleton", 2, 80, ennemyWeapon, 0, true);
+let perso = new Pnj("Pseudo_Perso", 10, 5000, sword, 526, true, 50000);
