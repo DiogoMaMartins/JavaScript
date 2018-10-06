@@ -12,36 +12,35 @@
 
 <body>
     <script>
-        let array = ['B', 'O', 'N', 'J', 'O', 'U', 'R'];
-        let array2 = ['', '', '', '', '', '', ''];
-        let keep = true;
-        // console.log(a);
-        function guessLetter(lettre) {
-            let letterFound = false;
-            for (let index = 0; index < array.length; index++) {
-                if (lettre == array[index]) {
-                    array2[index] = lettre;
-                    letterFound = true;
-                    console.log(array2)
-
-                }
-            }
-            if(letterFound == false){
-                console.log("Lettre pas dans le tableau");
-            }
+        let message = console.log();
+        let tryNb = 0;
+        let mini = 20;
+        let max = 80;
+        let enter = prompt("Entrez un chiffre");
+        let enterToInteger = parseInt(enter);
+    let randomize;
+        function randomNb(mini, max){
+            randomize = Math.round(Math.random() * max) + mini;
+            return randomize;
         }
 
-
-
-
-
-        while (keep == true) {
-            lettre = prompt("Entrez une lettre");
-            guessLetter(lettre);
-            if (array.toString() == array2.toString()) {
-                keep = false;
+        function checkEnter (randomize){
+            randomNb(mini , max);
+            if (enterToInteger  === randomize){
+                tryNb++;
+                message = "C'est juste tu as trouvé en " + tryNb
+            } else if (enterToInteger < randomize){
+                tryNb++;
+                message = "C'est plus"
+                enter 
+            } else if (enterToInteger > randomize){
+                message = "C'est moins";
+                enter 
             }
+            
         }
+        
+        checkEnter();
 
     </script>
 </body>

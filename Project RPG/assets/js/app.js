@@ -31,33 +31,49 @@ class Arme {
     }
 }
 
-
-
 class Pnj {
 
-    constructor(name, level, life, weapon, xppoint) {
+    constructor(name, level, life, weapon, xppoint, alive) {
         this.name = name;
         this.level = level;
         this.life = life;
         this.weapon = weapon;
         this.xppoint = xppoint;
+        this.alive = alive;
     }
 
-    fonctionRecievedammageEnnemy(calculDommage) {
+    fonctionRecievedammageEnnemy(calculDommage, mainCharacter) {
         // let calculDommage = this.level * this.weapon.minDammage;
         this.life -= calculDommage;
+        if (this.life < 0) {
+            this.alive = false;
+            this.life = 0;
+            mainCharacter.fonctionCalculxp();
+            isAlive = false;
+            let fight = document.querySelector("#fight");
+            let fightON = document.querySelector("#fightON");
+            fight.style.visibility = "visible";
+            fightON.style.visibility = "hidden";
+
+        }
 
         console.log("life: ", this.life)
 
     }
 
-    fonctionRecievedammageMain(calculEnnemyDommage, ennemyName) {
+    fonctionRecievedammageMain(calculEnnemyDommage, interval) {
         this.life -= calculEnnemyDommage;
-        if (this.life == 0) {
+        if (this.life < 0) {
+            this.life = 0;
+            this.alive = false;
             console.log("Your are dead");
             clearInterval(interval);
+            let fight = document.querySelector("#fight");
+            let fightON = document.querySelector("#fightON");
+            fight.style.visibility = "visible";
+            fightON.style.visibility = "hidden";
         } else {
-            
+
         }
         console.log("life: ", this.life)
     }
@@ -67,7 +83,7 @@ class Pnj {
         ennemyName.fonctionRecievedammageEnnemy(calculDommage, mainCharacter);
     }
 
-    fonctionEnnemyAttack(mainCharacter, ennemyName) {
+    fonctionEnnemyAttack(mainCharacter) {
         let calculDommage = this.level * this.weapon.minDammage;
         mainCharacter.fonctionRecievedammageMain(calculDommage, mainCharacter);
         mainCharacter.fonctionAfficherStat(this);
@@ -75,21 +91,11 @@ class Pnj {
 
     }
 
-
-
-
-    fonctionCalculxp(ennemyName) {
-        if (ennemyName.life == 0) {
-            let gainXP = Math.round(Math.random() * 1000) + 1;
-            this.xppoint += gainXP
-            console.log("Vous avez obtenu " + gainXP + " vous avez un total de " + this.xppoint + " XP");
-            this.fonctionLevelUp();
-            this.fonctionAfficherStat(ennemyName);
-
-        } else {
-        }
-
-
+    fonctionCalculxp() {
+        let gainXP = Math.round(Math.random() * 1000) + 1;
+        this.xppoint += gainXP
+        console.log("Vous avez obtenu " + gainXP + " vous avez un total de " + this.xppoint + " XP");
+        this.fonctionLevelUp();
     }
     fonctionLevelUp() {
         if (this.xppoint >= 1000) {
@@ -135,22 +141,25 @@ class Pnj {
     }
 }
 
-let interval;
+
 let randomInterval = Math.floor(Math.random() * 300 + 800)
+let fight = document.querySelector("#fight");
+let fightON = document.querySelector("#fightON");
+let interval;
+let blueSquare = document.querySelector(".attacker");
+let redSquare = document.querySelector(".ennemy");
 
 function startGame() {
+    let characterAlive = perso.alive;
+    let ennemyAlive = ennemy.alive;
     let characterLife = perso.life;
     let weaponCharge = perso.weapon.maxUse;
     let weaponLevel = perso.weapon.minLevel;
     let characterLevel = perso.level;
-    let fight = document.querySelector("#fight");
-    let fightON = document.querySelector("#fightON");
-    let blueSquare = document.querySelector(".attacker");
-    let redSquare = document.querySelector(".ennemy");
-
-    if (characterLife != 0) {
+    if (ennemyAlive != false || characterAlive != false) {
         if (weaponCharge != 0) {
             if (characterLevel > weaponLevel) {
+
                 blueSquare.classList.add("blueAnimation");
                 redSquare.classList.add("redAnimation");
                 ennemyAttack();
@@ -170,24 +179,29 @@ function startGame() {
             console.log("Your Weapon is empty !")
         }
     } else {
-        console.log("You are dead !")
+        console.log("You are dead !");
+
     }
 }
-
-function characterAttack() {
-    let ennemyLife = ennemy.life;
-
-    if (ennemyLife > 0) {
+let isAlive = true;
+function characterAttack(isAlive) {
+    if (ennemy.alive == true) {
         perso.fonctionMainAttack(ennemy, perso);
         perso.weapon.maxUsechecker();
         perso.fonctionAfficherStat(ennemy);
-    } else {
-        console.log(ennemy.name + " est mort !");
-        perso.fonctionCalculxp(ennemy);
-        perso.fonctionAfficherStat(ennemy);
-        ennemy.life = -1;
+
+        // perso.fonctionAliveChecker();
     }
 
+    if (isAlive == false) {
+        console.log(ennemy.name + " est mort !");
+        perso.fonctionAfficherStat(ennemy);
+        perso.fonctionCalculxp(ennemy);
+        isAlive = true;
+
+
+
+    }
 
 }
 
@@ -199,5 +213,5 @@ function ennemyAttack() {
 let sword = new Arme("Sword", 5, 25, 150);
 let blunt = new Arme("blunt", 10, 15, 10);
 
-let ennemy = new Pnj("Skeleton", 2, 800, blunt);
-let perso = new Pnj("Pseudo_Perso", 10, 50, sword, 526);
+let ennemy = new Pnj("Skeleton", 2, 80, blunt, 0, true);
+let perso = new Pnj("Pseudo_Perso", 10, 50000, sword, 526, true);
