@@ -46,11 +46,12 @@ function startGame() {
                 if (characterLevel > weaponLevel) {
                     let blueSquare = document.querySelector(".attacker");
                     let redSquare = document.querySelector(".ennemy");
-                    let fight = document.querySelector("#fight");
-                    let fightON = document.querySelector("#fightON");
+
                     blueSquare.classList.add("blueAnimation");
                     redSquare.classList.add("redAnimation");
                     ennemyAttack();
+                    let fight = document.querySelector("#fight");
+                    let fightON = document.querySelector("#fightON");
                     fight.style.visibility = "hidden";
                     fightON.style.visibility = "visible";
 
@@ -70,6 +71,8 @@ function startGame() {
 let isAlive = true;
 function characterAttack(isAlive) {
     if (ennemy.alive == true) {
+        
+        annimateBattle();
         perso.fonctionMainAttack(ennemy, perso);
         perso.weapon.maxUsechecker();
         perso.fonctionAfficherStat(ennemy);
@@ -84,6 +87,11 @@ function characterAttack(isAlive) {
         isAlive = true;
     }
 
+}
+
+function annimateBattle(){
+    let blueSquare = document.querySelector(".attacker");
+        blueSquare.innerHTML = '<img src="assets/sprites/Skeleton Idle.gif" alt="" width="100%">'
 }
 
 function ennemyAttack() {

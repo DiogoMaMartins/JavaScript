@@ -78,8 +78,8 @@ class Pnj {
     fonctionAfficherStat(ennemyName) {
         //Character
         let characterCalculDammage = this.weapon.weaponDammage * this.level;
-        let characterName = document.querySelector("#name");
-        characterName.innerHTML = "Name : " + this.name;
+        // let characterName = document.querySelector("#name");
+        // characterName.innerHTML = "Name : " + this.name;
         let characterWeapon = document.querySelector("#weapon");
         characterWeapon.innerHTML = "Weapon : " + this.weapon.weaponName;
         let characterLevel = document.querySelector("#level");
@@ -92,12 +92,12 @@ class Pnj {
         characterDammage.innerHTML = "Dammage : " + characterCalculDammage;
 
         //Ennemy 
-        let ennemyNames = document.querySelector("#ennemyName");
-        ennemyNames.innerHTML = "Name : " + ennemyName.name;
-        let ennemyLevel = document.querySelector("#ennemyLevel");
-        ennemyLevel.innerHTML = "Level : " + ennemyName.level;
-        let ennemyLife = document.querySelector("#ennemyLife");
-        ennemyLife.innerHTML = "Life : " + ennemyName.life;
+        // let ennemyNames = document.querySelector("#ennemyName");
+        // ennemyNames.innerHTML = "Name : " + ennemyName.name;
+        // let ennemyLevel = document.querySelector("#ennemyLevel");
+        // ennemyLevel.innerHTML = "Level : " + ennemyName.level;
+        // let ennemyLife = document.querySelector("#ennemyLife");
+        // ennemyLife.innerHTML = "Life : " + ennemyName.life;
         // let ennemyDammage = document.querySelector("#ennemyDammage");
         // ennemyDammage.innerHTML = "Dammage : " + ennemyName.weapon.weaponDammage;
 
@@ -114,5 +114,5 @@ class Pnj {
 }
 
 
-let ennemy = new Pnj("Skeleton", 2, 80, ennemyWeapon, 0, true);
+let ennemy = new Pnj("Skeleton", 2, 800, ennemyWeapon, 0, true);
 let perso = new Pnj("Pseudo_Perso", 10, 5000, sword, 526, true, 50000);

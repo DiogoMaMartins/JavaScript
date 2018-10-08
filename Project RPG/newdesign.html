@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="newdesign.css" />
+    <script src="assets/js/weapon.js" type="text/javascript"></script>
+    <script src="assets/js/character.js" type="text/javascript"></script>
+    <script src="assets/js/game.js" type="text/javascript"></script>
+</head>
+
+<body onload="perso.fonctionAfficherStat (ennemy); loadShop()">
+    <div class="containerGrid">
+        <div class="characterInfo">
+            <h2 style="text-align: center;">Character Information</h2>
+            <div class="row1Character">
+
+            </div>
+
+            <div class="row2Character">
+                <div class="characterIcon">
+                    <img src="assets/sprites/knight idle.gif" alt="" width="100px" height="100px">
+                </div>
+
+                <div class="characterStats">
+                    <span id="level"></span>
+                    <span id="weapon"></span>
+                    <span id="life"></span>
+                    <span id="charge"></span>
+                    <span id="dammage"></span>
+                </div>
+
+                <div class="ennemyStats">
+
+                </div>
+            </div>
+            <div class="row3Character" style="text-align: center;">
+                <div class="xpbar">
+                    <h4 id="yourXP"></h4>
+                    <div class="barre">
+
+                        <div class="skill xpPercent centerContent">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="shop">
+            <h2 style="text-align: center;">Shop</h2>
+            <div class="itemToSell">
+                <span class="objectInStock" id="objectInStock1"></span>
+            </div>
+        </div>
+        <button id="fight" onclick="startGame();">Start Game</button>
+        <button id="fightON" onclick="characterAttack();">Attack</button>
+    </div>
+    <div class="containerBottom">
+            <div class="fightZone">
+                    <div class="attacker">
+                            <img src="assets/sprites/Skeleton Idle.gif" alt="" width="100%">
+                    </div>
+                    <div class="ennemy">
+                        
+                    </div>
+                </div>
+    </div>
+</body>
+
+</html>
