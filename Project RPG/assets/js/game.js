@@ -91,7 +91,7 @@ function characterAttack(isAlive) {
 
 function annimateBattle(){
     let blueSquare = document.querySelector(".attacker");
-        blueSquare.innerHTML = '<img src="assets/sprites/Skeleton Idle.gif" alt="" width="100%">'
+        blueSquare.innerHTML = '<img src="assets/sprites/Skeleton Idle.gif" alt="" width="100%">';
 }
 
 function ennemyAttack() {
