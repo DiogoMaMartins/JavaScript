@@ -17,13 +17,18 @@
   </div>
   <script>
     let imgAllHover = document.querySelectorAll("img");
-    imgAllHover.slice(1)
-    for (let i = 1; i <= 5; i++) {
-      
+    
+    for (let i = 0; i < imgAllHover.length; i++) {
       let imgAllHoveri = imgAllHover[i];
-      imgAllHoveri.src = "images/image" + i + "_2.jpg";
-      console.log(imgAllHoveri);
+      let tempI = i + 1;
+      imgAllHoveri.src = "images/image" + tempI + "_2.jpg";
+      imgAllHoveri.addEventListener("mouseover", function (event) {
+    // event.target.src = "images/image1_2.jpg";
+    let randomI = Math.floor(Math.random() * 5) + 1;
+    event.target.src = "images/image" + randomI + ".jpg";
+    });
     }
+      
   </script>
 </body>
 
