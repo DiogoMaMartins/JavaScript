@@ -7,49 +7,13 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
-    <!-- <script src="main.js"></script> -->
+    <script src="app.js"></script>
 </head>
 
 <body>
-    <script>
-        let message = console.log("");
-
-        let mini = 20;
-        let max = 80;
-        let tryNb = 0;
-        let keepPlaying = true;
-        let theRandom = randomNb(max, mini);
-        let enter = prompt("Entrez un chiffre");
-        let enterToInteger = parseInt(enter);
-        function randomNb(max, mini) {
-             return  Math.round(Math.random() * max) + mini;
-        }
-
-        function checkEnter() {
-            if (enterToInteger === theRandom) {
-                tryNb++;
-                message = console.log("C'est juste tu as trouvé en " + tryNb);
-            } else if (enterToInteger < theRandom) {
-                tryNb++;
-                message = console.log("En dessou ! " + tryNb);
-            } else if (enterToInteger > theRandom) {
-                message = console.log("Au Dessu ! " + tryNb);
-            } else {
-
-            }
-
-        }
-        
-        while (keepPlaying == true) {
-            enter = prompt("Entrez un chiffre");
-            enterToInteger = parseInt(enter);
-            checkEnter();
-            // console.log(randomize)
-            if (enterToInteger === randomNb()) {
-                keepPlaying = false;
-            }
-        }
-    </script>
+        <label for="wordSelect">Choisissez un mot !</label>
+        <input type="text" name="wordSelect" id="wordSelect" value="">
+        <Button onclick="changeWord()">Change Word</Button>
 </body>
 
 </html>

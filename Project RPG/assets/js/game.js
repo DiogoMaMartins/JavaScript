@@ -5,16 +5,16 @@ let randomInterval = Math.floor(Math.random() * 300 + 800)
 function loadShop() {
 
     let objectInStock1 = document.querySelector("#objectInStock1");
-    objectInStock1.innerHTML = "<img src ='" + RandomizeObject1.icon + "' width ='50px' hight='50px'><br>" + "Weapon Name : " + RandomizeObject1.weaponName + " <br> Price : " + RandomizeObject1.price +
-        "<br> Weapon Dammage :" + RandomizeObject1.weaponDammage
-        + "<br> Charge : " + RandomizeObject1.maxUse + "<br><button onclick='reloadShop()';>Reload</button><br><button onclick='fonctionBuyWeapon(RandomizeObject1)'>Buy</button>";
+    objectInStock1.innerHTML = "<img src ='" + randomizeObject1.icon + "' width ='50px' hight='50px'><br>" + "Weapon Name : " + randomizeObject1.weaponName + " <br> Price : " + randomizeObject1.price +
+        "<br> Weapon Dammage :" + randomizeObject1.weaponDammage
+        + "<br> Charge : " + randomizeObject1.maxUse + "<br><button onclick='reloadShop()';>Reload</button><br><button onclick='fonctionBuyWeapon(randomizeObject1)'>Buy</button>";
     perso.fonctionAfficherStat(ennemy);
 
 }
 
 
 function reloadShop() {
-    RandomizeObject1 = weaponNameList[Math.floor(Math.random() * weaponNameList.length)];
+    randomizeObject1 = new Weapon("Sword", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1, SwordIcon);
     perso.fonctionAfficherStat(ennemy);
     loadShop();
 }
@@ -27,7 +27,7 @@ function fonctionBuyWeapon(requireWeapon) {
         reloadShop();
         loadShop();
     } else {
-        alert("Not Money");
+        alert("No Money");
     }
 
 }
@@ -40,23 +40,30 @@ function startGame() {
     let weaponLevel = perso.weapon.minLevel;
     let characterLevel = perso.level;
     let level = perso.level;
+
     if (ennemyAlive != false) {
         if (characterAlive != false) {
             if (weaponCharge != 0) {
                 if (characterLevel > weaponLevel) {
+                    ennemy = new Pnj("Skeleton", 2, 50000, ennemyWeapon, 0, true);
                     let blueSquare = document.querySelector(".attacker");
                     let redSquare = document.querySelector(".ennemy");
-
                     blueSquare.classList.add("blueAnimation");
                     redSquare.classList.add("redAnimation");
+                    
+
                     ennemyAttack();
                     let fight = document.querySelector("#fight");
                     let fightON = document.querySelector("#fightON");
                     fight.style.visibility = "hidden";
                     fightON.style.visibility = "visible";
 
+                    let lvlUP = document.querySelector(".characterIcon");
+                    lvlUP.classList.remove("levelUPEffect");
+
                     perso.weapon.levelChecker(level);
                     perso.fonctionAfficherStat(ennemy);
+                    
                 } else {
                 }
             } else {
@@ -65,6 +72,8 @@ function startGame() {
         } else {
             console.log("You are dead !");
         }
+    } else {
+        
     }
 }
 
@@ -72,7 +81,7 @@ let isAlive = true;
 function characterAttack(isAlive) {
     if (ennemy.alive == true) {
         
-        annimateBattle();
+        animateBattle();
         perso.fonctionMainAttack(ennemy, perso);
         perso.weapon.maxUsechecker();
         perso.fonctionAfficherStat(ennemy);
@@ -89,12 +98,31 @@ function characterAttack(isAlive) {
 
 }
 
-function annimateBattle(){
-    let blueSquare = document.querySelector(".attacker");
-        blueSquare.innerHTML = '<img src="assets/sprites/Skeleton Idle.gif" alt="" width="100%">';
+function animateBattle (){
+        let blue = document.querySelector('.blueAnimation');
+        blue.style.animation = 'none';
+        blue.offsetHeight; /* trigger reflow */
+        blue.style.animation = null; 
+
+        //
 }
 
+function animateEnnemyAttack(){
+    let red = document.querySelector('.redAnimation');
+        red.style.animation = 'none';
+        red.offsetHeight; /* trigger reflow */
+        red.style.animation = null; 
+}
+
+// document.documentElement.onclick = function () {
+//     var joe = document.createElement('div');
+//     joe.innerHTML = 'yo!';
+//     joe.className = 'joe';
+//     document.body.appendChild(joe);
+// }
+
+
 function ennemyAttack() {
-    interval = setInterval("ennemy.fonctionEnnemyAttack(perso)", randomInterval);
+    interval = setInterval("ennemy.fonctionEnnemyAttack(perso), animateEnnemyAttack()", randomInterval);
 
 }

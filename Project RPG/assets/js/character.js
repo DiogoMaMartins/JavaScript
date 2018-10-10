@@ -25,6 +25,7 @@ class Pnj {
             let fightON = document.querySelector("#fightON");
             fight.style.visibility = "visible";
             fightON.style.visibility = "hidden";
+            ennemy = new Pnj("Skeleton", 2, 50000, ennemyWeapon, 0, true);
 
         }
     }
@@ -64,12 +65,13 @@ class Pnj {
     }
 
     fonctionLevelUp() {
-        let levelingCalcul = this.level * 1000;
         if (this.xppoint >= 1000) {
             this.xppoint -= 1000;
             this.level++;
-            console.log("Vous avez monter de niveau !");
-            this.fonctionAfficherStat(ennemyName);
+            let lvlUP = document.querySelector(".characterIcon");
+            lvlUP.classList.add("levelUPEffect");
+            // console.log("Vous avez monter de niveau !");
+            this.fonctionAfficherStat(this);
         } else {
 
         }
@@ -96,10 +98,10 @@ class Pnj {
         // ennemyNames.innerHTML = "Name : " + ennemyName.name;
         // let ennemyLevel = document.querySelector("#ennemyLevel");
         // ennemyLevel.innerHTML = "Level : " + ennemyName.level;
-        // let ennemyLife = document.querySelector("#ennemyLife");
-        // ennemyLife.innerHTML = "Life : " + ennemyName.life;
-        // let ennemyDammage = document.querySelector("#ennemyDammage");
-        // ennemyDammage.innerHTML = "Dammage : " + ennemyName.weapon.weaponDammage;
+        let ennemyLife = document.querySelector("#ennemyLife");
+        ennemyLife.innerHTML = "Life : " + ennemyName.life;
+        let ennemyDammage = document.querySelector("#ennemyDammage");
+        ennemyDammage.innerHTML = "Dammage : " + ennemyName.weapon.weaponDammage;
 
         // XP Affichage XP
         let xp = document.querySelector(".xpPercent");
@@ -114,5 +116,5 @@ class Pnj {
 }
 
 
-let ennemy = new Pnj("Skeleton", 2, 800, ennemyWeapon, 0, true);
+let ennemy = new Pnj("Skeleton", 2, 50000, ennemyWeapon, 0, true);
 let perso = new Pnj("Pseudo_Perso", 10, 5000, sword, 526, true, 50000);

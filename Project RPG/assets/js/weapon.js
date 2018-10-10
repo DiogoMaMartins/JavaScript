@@ -37,10 +37,11 @@ class Weapon {
 
 let SwordIcon = "../sword.png";
 let ennemyWeapon = new Weapon("EnnemyWeapon", 0 , 50, 0, 0)
+let randomizeObject1 = new Weapon("Sword", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1, SwordIcon);
 let blade = new Weapon("Blade", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1, SwordIcon);
 let blunt = new Weapon("Blunt", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1, SwordIcon);
 let katana = new Weapon("Katanna", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1, SwordIcon);
 let sword = new Weapon("Sword", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1, SwordIcon);
 let axe = new Weapon("Axe", Math.floor(Math.random() * 10) + 1, Math.floor(Math.random() * 100) + 10, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 10000) + 1, SwordIcon);
 let weaponNameList = [blade, blunt, katana, sword, axe];
-let RandomizeObject1 = weaponNameList[Math.floor(Math.random() * weaponNameList.length)];
+// let RandomizeObject1 = weaponNameList[Math.floor(Math.random() * weaponNameList.length)];

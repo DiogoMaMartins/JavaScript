@@ -15,17 +15,18 @@
 <body onload="perso.fonctionAfficherStat (ennemy); loadShop()">
     <div class="containerGrid">
         <div class="characterInfo">
-            <h2 style="text-align: center;">Character Information</h2>
+            <h2 style="text-align: center;">Battle Information</h2>
             <div class="row1Character">
 
             </div>
 
             <div class="row2Character">
                 <div class="characterIcon">
-                    <img src="assets/sprites/knight idle.gif" alt="" width="100px" height="100px">
+                    <img src="assets/sprites/Skeleton Idle.gif" alt="" width="100px" height="200px">
                 </div>
 
                 <div class="characterStats">
+                    <h4>Character Information : </h4>
                     <span id="level"></span>
                     <span id="weapon"></span>
                     <span id="life"></span>
@@ -34,7 +35,9 @@
                 </div>
 
                 <div class="ennemyStats">
-
+                    <h4>Ennemy Information : </h4>
+                        <span id="ennemyLife"></span>
+                        <span id="ennemyDammage"></span>
                 </div>
             </div>
             <div class="row3Character" style="text-align: center;">
@@ -61,7 +64,8 @@
     <div class="containerBottom">
             <div class="fightZone">
                     <div class="attacker">
-                            <img src="assets/sprites/Skeleton Idle.gif" alt="" width="100%">
+                            <div class="smallBlockBlue"></div>
+                            <div></div>
                     </div>
                     <div class="ennemy">
                         
