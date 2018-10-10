@@ -10,5 +10,22 @@
       <img src="images/image3.jpg" id="image3" />
       <img src="images/image4.jpg" id="image4" />
       <img src="images/image5.jpg" id="image5" />
+
+      <script>
+        let imgAllHover = document.querySelectorAll("img");
+    
+    for (let i = 0; i < imgAllHover.length; i++) {
+      let imgAllHoveri = imgAllHover[i];
+      let tempI = i + 1;
+      
+      imgAllHoveri.addEventListener("mouseover", function (event) {
+      event.target.src = "images/image" + tempI + "_2.jpg";
+      });
+
+      imgAllHoveri.addEventListener("mouseleave", function (event) {
+      event.target.src = "images/image" + tempI + ".jpg";
+      });
+    }
+      </script>
   </body>
 </html>
