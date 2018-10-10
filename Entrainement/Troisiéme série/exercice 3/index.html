@@ -8,5 +8,13 @@
   <form>
     <label for="nom">Votre nom  : </label><input type="text" name="nom" value="" id="nom" />
   </form>
+
+  <script>
+    let nomInput = document.querySelector("#nom");
+    nomInput.addEventListener("keydown", myKeyDown);
+    function myKeyDown (){
+      alert(nomInput.value);
+    }
+  </script>
 </body>
 </html>
