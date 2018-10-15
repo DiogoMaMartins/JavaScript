@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Exercice 4</title>
+</head>
+<body>
+  <form>
+    <label for="motdepasse">Votre mot de passe : </label><input type="text" name="motdepasse" value="" id="motdepasse" />
+    <label for="confirmation">Confirmez : </label><input type="text" name="confirmation" value="" id="confirmation" />
+    <button type="button" name="button" >Vérification</button>
+  </form>
+
+  <script> 
+    let mDP1 = document.querySelector("#motdepasse");
+    let mDP2 = document.querySelector("#confirmation");
+    let selectButton = document.querySelector("button");
+    selectButton.addEventListener("click", mdpDiff)
+
+    function mdpDiff(){
+      if (mDP1.value != mDP2.value){
+      mDP1.style.border = "1px red solid";
+      mDP2.style.border = "1px red solid";
+    } else {
+      mDP1.style.border = "1px green solid";
+      mDP2.style.border = "1px green solid";
+    }
+    }
+    
+  </script>
+</body>
+</html>

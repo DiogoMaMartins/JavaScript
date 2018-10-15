@@ -53,7 +53,7 @@
     <div class="hoverme"></div>
     <div class="hoverme"></div>
 
-    <div id="reset"></div>
+    <button id="reset">HAAAA</button>
 
     <div id="axe-y"></div>
     <div id="axe-x"></div>
@@ -66,7 +66,7 @@
         for (let index = 0; index < hoverDiv.length; index++) {
             const element = hoverDiv[index];
             element.addEventListener("mouseover", function (event) {
-                event.target.style.display = "none";
+                event.target.style.visibility = "hidden";
 
             })
         };
@@ -74,11 +74,11 @@
         // Faire de sorte que quand on clique dessus elle fasse réaparaitre les 3 divs premièrement créé
         let reset = document.getElementById("reset");
 
-        let Show = function () {
+        function Show() {
             for (let index = 0; index < hoverDiv.length; index++) {
                 const element = hoverDiv[index];
                 element.classList.add("elementToAnimate");
-                element.style.display = "block";
+                element.style.visibility = "visible";
 
             }
         }

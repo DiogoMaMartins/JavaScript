@@ -1,7 +1,4 @@
 let interval;
-
-
-
 class Pnj {
 
     constructor(name, level, life, weapon, xppoint, alive, mygold) {
